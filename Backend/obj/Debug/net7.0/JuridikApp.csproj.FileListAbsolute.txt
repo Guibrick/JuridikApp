@@ -279,3 +279,10 @@ C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\obj\Debug\net7.0\refint\Ju
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\obj\Debug\net7.0\JuridikApp.pdb
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\obj\Debug\net7.0\JuridikApp.genruntimeconfig.cache
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\obj\Debug\net7.0\ref\JuridikApp.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.Mvc.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.Razor.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.Helpers.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.WebPages.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
