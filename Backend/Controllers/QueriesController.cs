@@ -73,30 +73,29 @@ namespace JuridikApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Query>> PostQuery(Query query)
+        public async Task<ActionResult<Query>> PostQuery([FromForm] QueryRequest request)
         {
             if (_context.Queries == null)
             {
                 return Problem("Entity set 'JuridikContext.Queries'  is null.");
             }
-            _context.Queries.Add(query);
-            try
+            _context.Queries.Add(new Query()
             {
-                await _context.SaveChangesAsync();
+                QueryId = Guid.NewGuid().ToString(),
+                CaseDate = request.CaseDate,
+                CasePlace = request.CasePlace,
+                CaseClaimant = request.CaseClaimant,
+                CaseDefendant = request.CaseDefendant,
+                ApplicableLaw = request.ApplicableLaw,
+                ApplicableJurisprudence = request.ApplicableJurisprudence,
+                ApplicableDoctrine = request.ApplicableDoctrine,
+                Judgement = "Pending",
             }
-            catch (DbUpdateException)
-            {
-                if (QueryExists(query.QueryId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            );
 
-            return CreatedAtAction("GetQuery", new { id = query.QueryId }, query);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]

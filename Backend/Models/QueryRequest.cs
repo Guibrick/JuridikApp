@@ -1,8 +1,7 @@
-namespace JuridikApp.Models
+﻿namespace JuridikApp.Models
 {
-    public class Query
+    public class QueryRequest
     {
-        public string? QueryId { get; set; }
         public string? CaseDate { get; set; }
         public string? CasePlace { get; set; }
         public string? CaseClaimant { get; set; }
@@ -10,6 +9,5 @@ namespace JuridikApp.Models
         public string? ApplicableLaw { get; set; }
         public string? ApplicableJurisprudence { get; set; }
         public string? ApplicableDoctrine { get; set; }
-        public string? Judgement { get; set; }
     }
 }
