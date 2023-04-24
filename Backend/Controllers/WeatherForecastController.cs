@@ -1,3 +1,4 @@
+using JuridikApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JuridikApp.Controllers
