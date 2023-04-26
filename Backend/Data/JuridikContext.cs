@@ -8,6 +8,7 @@ namespace JuridikApp.Data
         public JuridikContext(DbContextOptions<JuridikContext> options) : base(options)
         {
         }
+
         public virtual DbSet<Query> Queries { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

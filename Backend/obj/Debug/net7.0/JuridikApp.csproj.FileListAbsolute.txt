@@ -286,3 +286,4 @@ C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.We
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\System.Web.WebPages.dll
 C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+C:\Users\guibe\OneDrive\Escritorio\JuridikApp\Backend\bin\Debug\net7.0\OpenAI_API.dll
