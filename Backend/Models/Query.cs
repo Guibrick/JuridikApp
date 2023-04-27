@@ -7,6 +7,7 @@ namespace JuridikApp.Models
         public string? CasePlace { get; set; }
         public string? CaseClaimant { get; set; }
         public string? CaseDefendant { get; set; }
+        public string? Description { get; set; }
         public string? ApplicableLaw { get; set; }
         public string? ApplicableJurisprudence { get; set; }
         public string? ApplicableDoctrine { get; set; }

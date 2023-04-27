@@ -2,6 +2,8 @@
 using JuridikApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OpenAI_API;
+using OpenAI_API.Completions;
 
 namespace JuridikApp.Controllers
 {
@@ -73,29 +75,44 @@ namespace JuridikApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Query>> PostQuery([FromForm] QueryRequest request)
+        public async Task<ActionResult<Query>> PostQueryandAIAnswer([FromForm] QueryRequest request)
         {
-            if (_context.Queries == null)
-            {
-                return Problem("Entity set 'JuridikContext.Queries'  is null.");
-            }
-            _context.Queries.Add(new Query()
-            {
-                QueryId = Guid.NewGuid().ToString(),
-                CaseDate = request.CaseDate,
-                CasePlace = request.CasePlace,
-                CaseClaimant = request.CaseClaimant,
-                CaseDefendant = request.CaseDefendant,
-                ApplicableLaw = request.ApplicableLaw,
-                ApplicableJurisprudence = request.ApplicableJurisprudence,
-                ApplicableDoctrine = request.ApplicableDoctrine,
-                Judgement = "Pending",
-            }
-            );
+            string apiKey = APIKeys.OpenAIKey;
+            string answer = string.Empty;
+            var openAI = new OpenAIAPI(apiKey);
+            CompletionRequest completionRequest = new CompletionRequest();
+            completionRequest.Prompt = "I want a case judgement under the following circumnstances: " + request.Description + "which took place on " + request.CaseDate +
+                "in " + request.CasePlace + " being the following person the claimant: " + request.CaseClaimant + " and this other person the defendant: " + request.CaseDefendant +
+                ". I want that the judgement is done according to the following legislation: " + request.ApplicableLaw + " and this jurispudence: " + request.ApplicableJurisprudence
+                + "and this doctrine: " + request.ApplicableDoctrine;
+            completionRequest.Model = OpenAI_API.Models.Model.DavinciText;
+            completionRequest.MaxTokens = 500;
+            var result = openAI.Completions.CreateCompletionsAsync(completionRequest);
 
-            await _context.SaveChangesAsync();
+            if (result != null)
+            {
+                foreach (var item in result.Result.Completions)
+                {
+                    answer = item.Text;
+                }
 
-            return Ok();
+                _context.Queries.Add(new Query()
+                {
+                    QueryId = Guid.NewGuid().ToString(),
+                    CaseDate = request.CaseDate,
+                    CasePlace = request.CasePlace,
+                    CaseClaimant = request.CaseClaimant,
+                    CaseDefendant = request.CaseDefendant,
+                    Description = request.Description,
+                    ApplicableLaw = request.ApplicableLaw,
+                    ApplicableJurisprudence = request.ApplicableJurisprudence,
+                    ApplicableDoctrine = request.ApplicableDoctrine,
+                    Judgement = answer,
+                }
+                );
+                await _context.SaveChangesAsync();
+            }
+            return Ok(answer);
         }
 
         [HttpDelete("{id}")]
